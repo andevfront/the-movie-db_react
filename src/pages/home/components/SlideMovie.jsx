@@ -23,8 +23,6 @@ export const SlideMovie = ({ id }) => {
     genres,
   } = data;
 
-  console.log(data);
-
   return (
     <div
       className="relative h-full w-full after:absolute after:inset-0 after:h-full after:w-full after:bg-[linear-gradient(to_bottom,_rgba(8,_15,_40,_0)_0%,_rgba(15,_23,_42,_1)_100%)]
@@ -37,9 +35,9 @@ export const SlideMovie = ({ id }) => {
           alt={title}
         />
       </figure>
-      <div className="container relative z-[5] mx-auto px-4 xl:px-8">
-        <div className="grid grid-cols-6 gap-20 pb-20 pt-28 lg:grid-cols-12">
-          <div className="col-span-6 text-slate-400">
+      <div className="container relative z-[5] mx-auto flex h-full items-center px-4 xl:px-8">
+        <div className="grid gap-20 sm:grid-cols-6 lg:grid-cols-12">
+          <div className="col-span-full text-slate-400 sm:col-span-6">
             <h1 className="text-5xl font-bold uppercase text-white">{title}</h1>
             <span className="text-xl italic">{original_title}</span>
             <div className="my-4 flex items-center gap-4">
@@ -54,7 +52,7 @@ export const SlideMovie = ({ id }) => {
             </div>
             <p className="my-5 line-clamp-4">{overview}</p>
             <p className="my-4 text-white">
-              Genres: <span className="text-slate-400">{genres[0].name}</span>
+              Género: <span className="text-slate-400">{genres[0].name}</span>
             </p>
             <Link
               className="mr-5 inline-flex rounded-lg bg-sky-500 px-4 py-3 font-medium text-white transition-all duration-500 hover:bg-sky-700"
@@ -69,16 +67,8 @@ export const SlideMovie = ({ id }) => {
               Ver Trailer
             </Link>
           </div>
-          <div className="col-span-6 hidden lg:block">
-            <img
-              className="mx-auto h-[600px] overflow-hidden rounded-lg object-cover"
-              src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-              alt={title}
-            />
-          </div>
         </div>
       </div>
-      {id}
     </div>
   );
 };
