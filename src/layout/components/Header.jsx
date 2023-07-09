@@ -4,7 +4,7 @@ import { Search } from "../../components/Search";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 bg-slate-900 py-5 transition-all duration-300">
+    <header className="absolute left-0 top-0 z-10 w-full bg-[linear-gradient(to_bottom,_rgba(15,_23,_42,_1)_1%,_rgba(15,_23,_42,_0)_100%)] py-5 transition-all duration-300">
       <div className="container mx-auto flex items-center justify-between px-4 xl:px-8">
         <Link to="/">
           <figure>

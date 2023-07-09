@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-900 text-white font-poppins;
+  @apply bg-slate-900 font-poppins text-white;
 }

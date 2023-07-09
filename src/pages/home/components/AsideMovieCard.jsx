@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { useDecimalRound, useFetch } from "../../../hooks";
 import { HiStar, HiOutlineClock } from "react-icons/hi";
 import { HiCalendarDays } from "react-icons/hi2";
-import { useDate, useDecimalRound, useFetch } from "../../../hooks";
+import moment from "moment";
 
 export const AsideMovieCard = ({ id }) => {
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -15,9 +16,9 @@ export const AsideMovieCard = ({ id }) => {
     data;
 
   return (
-    <div className="flex gap-2 mb-4">
+    <div className="mb-4 flex gap-2">
       <Link
-        className="h-36 w-24 min-w-max rounded overflow-hidden"
+        className="h-36 w-24 min-w-max overflow-hidden rounded"
         to={`movie/${id}`}
       >
         <img
@@ -30,15 +31,15 @@ export const AsideMovieCard = ({ id }) => {
         <Link to={`movie/${id}`}>
           <h3>{title}</h3>
         </Link>
-        <p className="line-clamp-4 text-xs text-slate-400 my-2">{overview}</p>
-        <div className="flex items-center gap-4 my-4">
+        <p className="my-2 line-clamp-4 text-xs text-slate-400">{overview}</p>
+        <div className="my-4 flex items-center gap-4">
           <span className="flex items-center gap-1 text-xs">
             <HiStar className="h-4 w-4 text-yellow-400" />
             {useDecimalRound(vote_average)}
           </span>
           <span className="flex items-center gap-1 text-xs">
             <HiCalendarDays className="h-4 w-4 text-white" />
-            {useDate(release_date)}
+            {moment(release_date).format("YYYY")}
           </span>
           <span className="flex items-center gap-1 text-xs">
             <HiOutlineClock className="h-4 w-4 text-white" />
