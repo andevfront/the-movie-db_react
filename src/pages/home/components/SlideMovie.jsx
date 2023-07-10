@@ -1,8 +1,8 @@
 import { useFetch } from "../../../hooks";
-import { HiOutlineClock } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import { HiOutlineClock, HiArrowNarrowRight } from "react-icons/hi";
 import { HiCalendarDays } from "react-icons/hi2";
 import moment from "moment";
-import { Link } from "react-router-dom";
 
 export const SlideMovie = ({ id }) => {
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -16,7 +16,6 @@ export const SlideMovie = ({ id }) => {
     title,
     original_title,
     backdrop_path,
-    poster_path,
     release_date,
     runtime,
     overview,
@@ -51,20 +50,14 @@ export const SlideMovie = ({ id }) => {
               </span>
             </div>
             <p className="my-5 line-clamp-4">{overview}</p>
-            <p className="my-4 text-white">
-              Género: <span className="text-slate-400">{genres[0].name}</span>
-            </p>
+            <span className="my-4 block">
+              <b className="text-white">Género:</b> {genres[0].name}
+            </span>
             <Link
-              className="mr-5 inline-flex rounded-lg bg-sky-500 px-4 py-3 font-medium text-white transition-all duration-500 hover:bg-sky-700"
+              className="mr-5 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-4 py-3 font-medium text-white transition-all duration-500 hover:bg-sky-700"
               to={`movie/${id}`}
             >
-              Ver Detalles
-            </Link>
-            <Link
-              className="inline-flex rounded-lg bg-slate-800 px-4 py-3 font-medium text-white transition-all duration-500 hover:bg-slate-950"
-              to="#"
-            >
-              Ver Trailer
+              Ver Detalles <HiArrowNarrowRight className="h-6 w-6" />
             </Link>
           </div>
         </div>

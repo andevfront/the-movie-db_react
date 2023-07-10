@@ -13,11 +13,11 @@ export const SearchResults = ({ words, handleMovieClick }) => {
   const { results } = data;
 
   return (
-    <div className="search-result-popup max-h-64 min-w-[290px] overflow-y-auto p-2">
+    <div className="search-result-popup max-h-64 min-w-[290px] overflow-y-auto p-2 scrollbar scrollbar-track-slate-700 scrollbar-thumb-slate-800 hover:scrollbar-thumb-slate-600">
       {results.length > 0 ? (
         results.map((item) => (
           <Link
-            className="flex gap-2 p-2 transition-all duration-300 hover:bg-slate-700"
+            className="flex gap-2 p-2 transition-all duration-300 hover:bg-slate-700/50"
             key={item.id}
             to={`movie/${item.id}`}
             onClick={handleMovieClick}

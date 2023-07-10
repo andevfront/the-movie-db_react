@@ -1,0 +1,10 @@
+.react-rater {
+  @apply text-2xl;
+}
+.react-rater-star {
+  @apply text-slate-400;
+}
+.react-rater-star.is-active,
+.react-rater-star.is-active-half:before {
+  @apply text-sky-500;
+}

@@ -1,0 +1,12 @@
+.CircularProgressbar {
+  @apply h-[50px] w-max;
+}
+.CircularProgressbar-path {
+  @apply stroke-sky-500 !important;
+}
+.CircularProgressbar-trail {
+  stroke: gray !important;
+}
+.CircularProgressbar-text {
+  @apply fill-sky-500 text-2xl !important;
+}

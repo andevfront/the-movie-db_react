@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDecimalRound, useFetch } from "../../../hooks";
+import { useDecimalRounded, useFetch } from "../../../hooks";
 import { HiStar, HiOutlineClock } from "react-icons/hi";
 import { HiCalendarDays } from "react-icons/hi2";
 import moment from "moment";
@@ -35,7 +35,7 @@ export const AsideMovieCard = ({ id }) => {
         <div className="my-4 flex items-center gap-4">
           <span className="flex items-center gap-1 text-xs">
             <HiStar className="h-4 w-4 text-yellow-400" />
-            {useDecimalRound(vote_average)}
+            {useDecimalRounded(vote_average)}
           </span>
           <span className="flex items-center gap-1 text-xs">
             <HiCalendarDays className="h-4 w-4 text-white" />

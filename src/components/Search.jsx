@@ -21,7 +21,7 @@ export const Search = () => {
       onSubmit={(e) => e.preventDefault()}
     >
       <input
-        className="w-52 rounded-full border border-sky-700 bg-slate-800 py-2 pl-4 pr-10 text-slate-400 outline-none transition-all duration-500 sm:focus:w-60"
+        className="w-52 rounded-full border border-sky-700 bg-slate-800/50 py-2 pl-4 pr-10 text-slate-400 outline-none transition-all duration-500 focus:border-sky-400 sm:focus:w-60"
         type="search"
         name="search"
         id="search"
@@ -36,7 +36,7 @@ export const Search = () => {
       >
         <FiSearch className="h-6 w-6 text-sky-500" />
       </button>
-      <div className="absolute right-0 top-full mt-3 rounded-lg bg-slate-800">
+      <div className="absolute right-0 top-full mt-3 rounded-lg bg-slate-800/60">
         {words.trim().length > 0 && (
           <SearchResults words={words} handleMovieClick={handleMovieClick} />
         )}
