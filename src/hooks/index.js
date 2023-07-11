@@ -1,3 +1,4 @@
+export * from "./useCurrencyFormat";
 export * from "./useDecimalRounded";
 export * from "./useDuration";
 export * from "./useFetch";

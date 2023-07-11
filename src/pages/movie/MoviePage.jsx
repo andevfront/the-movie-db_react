@@ -1,6 +1,7 @@
 import { MovieOverview, MovieTrailer } from "./components";
 import { useFetch } from "../../hooks";
 import { useParams } from "react-router-dom";
+import { MovieDetails } from "./components/MovieDetails";
 
 export const MoviePage = () => {
   const { id } = useParams();
@@ -11,9 +12,7 @@ export const MoviePage = () => {
 
   if (isLoading) return;
 
-  const { title, backdrop_path, videos } = data;
-
-  // le quite h-screen w-screen
+  const { title, backdrop_path } = data;
 
   return (
     <div
@@ -29,7 +28,10 @@ export const MoviePage = () => {
       </figure>
       <div className="container relative z-[5] mx-auto px-4 pt-32 xl:px-8">
         <MovieOverview id={id} />
-        <MovieTrailer id={id} />
+        <div className="my-10 grid grid-cols-3 gap-10 lg:grid-cols-12">
+          <MovieDetails id={id} />
+          <MovieTrailer id={id} />
+        </div>
       </div>
     </div>
   );
