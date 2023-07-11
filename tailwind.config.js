@@ -2,6 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.jsx"],
   theme: {
+    container: {
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "1024px",
+        xl: "1280px",
+      },
+    },
     screens: {
       xs: "400px",
       sm: "640px",

@@ -1,8 +1,8 @@
-import { useTrailer } from "../hooks";
 import { useFetch } from "../../../hooks";
+import { useTrailer } from "../hooks";
 import YouTube from "react-youtube";
 
-export const MovieTrailer = ({ id }) => {
+export const MovieTrailer = ({ id, play = false }) => {
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_URL = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
 
@@ -13,11 +13,10 @@ export const MovieTrailer = ({ id }) => {
   const { results } = data;
 
   return (
-    <div className="col-span-3 lg:col-span-9">
-      <YouTube
-        iframeClassName="mx-auto h-[550px] w-full"
-        videoId={useTrailer(results)}
-      />
-    </div>
+    <YouTube
+      className="h-full"
+      iframeClassName="mx-auto h-full w-full"
+      videoId={useTrailer(results)}
+    />
   );
 };

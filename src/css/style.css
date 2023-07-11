@@ -7,3 +7,15 @@
 body {
   @apply bg-slate-900 font-poppins text-white scrollbar scrollbar-track-slate-700 scrollbar-thumb-slate-800 hover:scrollbar-thumb-slate-600;
 }
+
+.swiper-slide > img {
+  @apply h-full w-full object-cover;
+}
+
+.swiper-slide-visible {
+  @apply cursor-pointer opacity-25;
+}
+
+.swiper-slide-thumb-active {
+  @apply opacity-100;
+}

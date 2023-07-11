@@ -1,4 +1,4 @@
-import { MovieOverview, MovieTrailer } from "./components";
+import { MovieOverview, MovieGallery } from "./components";
 import { useFetch } from "../../hooks";
 import { useParams } from "react-router-dom";
 import { MovieDetails } from "./components/MovieDetails";
@@ -30,7 +30,7 @@ export const MoviePage = () => {
         <MovieOverview id={id} />
         <div className="my-10 grid grid-cols-3 gap-10 lg:grid-cols-12">
           <MovieDetails id={id} />
-          <MovieTrailer id={id} />
+          <MovieGallery id={id} />
         </div>
       </div>
     </div>
