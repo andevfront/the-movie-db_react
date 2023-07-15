@@ -9,7 +9,7 @@ import PlayImg from "../images/play_icon.png";
 
 import "swiper/css";
 import "swiper/css/free-mode";
-import "swiper/css/navigation";
+// import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 export const MovieGallery = ({ id }) => {
@@ -33,25 +33,27 @@ export const MovieGallery = ({ id }) => {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 relative flex h-[300px] select-none items-center sm:h-[550px]"
+        className="mySwiper2 group relative flex h-[300px] select-none items-center sm:h-[550px]"
       >
         <SwiperSlide>
           <MovieTrailer id={id} />
         </SwiperSlide>
 
-        {backdrops.map(({ file_path }) => (
-          <SwiperSlide key={file_path}>
-            <img
-              src={`https://image.tmdb.org/t/p/w1280${file_path}`}
-              alt={file_path}
-            />
-          </SwiperSlide>
-        ))}
+        {backdrops
+          .filter(({ iso_639_1 }) => iso_639_1 === null)
+          .map(({ file_path }) => (
+            <SwiperSlide key={file_path}>
+              <img
+                src={`https://image.tmdb.org/t/p/w1280${file_path}`}
+                alt={file_path}
+              />
+            </SwiperSlide>
+          ))}
 
-        <div className="button-prev absolute left-2 z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-500 hover:bg-sky-700">
+        <div className="button-prev absolute -left-full z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-300 group-hover:left-2 hover:bg-sky-700">
           <FiArrowLeft />
         </div>
-        <div className="button-next absolute right-2 z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-500 hover:bg-sky-700">
+        <div className="button-next absolute -right-full z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-300 group-hover:right-2 hover:bg-sky-700">
           <FiArrowRight />
         </div>
       </Swiper>
@@ -67,7 +69,7 @@ export const MovieGallery = ({ id }) => {
             slidesPerView: 4,
           },
         }}
-        className="mySwiper mt-4 h-[70px] sm:h-[150px]"
+        className="mySwiper mt-4 h-[70px] select-none sm:h-[150px]"
       >
         <SwiperSlide className="relative">
           <img
@@ -78,14 +80,16 @@ export const MovieGallery = ({ id }) => {
             src={PlayImg}
           />
         </SwiperSlide>
-        {backdrops.map(({ file_path }) => (
-          <SwiperSlide key={file_path}>
-            <img
-              src={`https://image.tmdb.org/t/p/w1280${file_path}`}
-              alt={file_path}
-            />
-          </SwiperSlide>
-        ))}
+        {backdrops
+          .filter(({ iso_639_1 }) => iso_639_1 === null)
+          .map(({ file_path }) => (
+            <SwiperSlide key={file_path}>
+              <img
+                src={`https://image.tmdb.org/t/p/w1280${file_path}`}
+                alt={file_path}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

@@ -4,7 +4,7 @@ import { MovieCardInfo } from "./MovieCardInfo";
 export const MovieCard = ({ id, poster_path, title }) => {
   return (
     <div className="group relative col-span-12 xs:col-span-4 lg:col-span-3 xl:col-span-2">
-      <Link className="flex h-full flex-col" to={`movie/${id}`}>
+      <Link className="flex h-full flex-col" to={`/movie/${id}`}>
         <div className="h-full overflow-hidden rounded-lg bg-slate-900">
           <img
             className="h-full w-full object-cover transition-all duration-500 group-hover:opacity-50"

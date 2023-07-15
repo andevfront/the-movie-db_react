@@ -1,7 +1,11 @@
-import { MovieOverview, MovieGallery } from "./components";
+import {
+  MovieDetails,
+  MovieOverview,
+  MovieGallery,
+  RecommendedMovies,
+} from "./components";
 import { useFetch } from "../../hooks";
 import { useParams } from "react-router-dom";
-import { MovieDetails } from "./components/MovieDetails";
 
 export const MoviePage = () => {
   const { id } = useParams();
@@ -32,6 +36,7 @@ export const MoviePage = () => {
           <MovieDetails id={id} />
           <MovieGallery id={id} />
         </div>
+        <RecommendedMovies id={id} title={title} />
       </div>
     </div>
   );
