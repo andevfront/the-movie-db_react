@@ -1,20 +1,14 @@
-import { useFetch } from "../../../hooks";
-import { BiSolidMoviePlay } from "react-icons/bi";
+import { useLoaderData } from "react-router-dom";
 import { AsideMovieCard } from "./AsideMovieCard";
+import { BiSolidMoviePlay } from "react-icons/bi";
 
 export const AsideMovies = () => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`;
+  const { upcomingMovies } = useLoaderData();
 
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
-
-  const { results } = data;
-
+  const { results } = upcomingMovies;
   return (
     <>
-      <h1 className="bg-slate-800 flex items-center justify-center gap-2 rounded-md p-4 mb-5">
+      <h1 className="mb-5 flex items-center justify-center gap-2 rounded-md bg-slate-800 p-4">
         <BiSolidMoviePlay className="h-5 w-5" />
         Top Estrenos
       </h1>

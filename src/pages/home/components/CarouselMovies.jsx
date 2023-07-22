@@ -7,16 +7,12 @@ import "swiper/css/effect-fade";
 
 import "swiper/css";
 import { SlideMovie } from "./SlideMovie";
+import { useLoaderData } from "react-router-dom";
 
 export const CarouselMovies = () => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+  const { popularMovies } = useLoaderData();
 
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
-
-  const { results } = data;
+  const { results } = popularMovies;
 
   return (
     <Swiper

@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage, MoviePage } from "../pages";
+import { getMovie, getMovies } from "../services";
 import { App } from "../layout";
 
 export const router = createBrowserRouter([
@@ -10,10 +11,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        loader: getMovies,
       },
       {
         path: "/movie/:id",
         element: <MoviePage />,
+        loader: getMovie,
       },
     ],
   },

@@ -4,19 +4,12 @@ import {
   MovieGallery,
   RecommendedMovies,
 } from "./components";
-import { useFetch } from "../../hooks";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 export const MoviePage = () => {
-  const { id } = useParams();
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+  const movie = useLoaderData();
 
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
-
-  const { title, backdrop_path } = data;
+  const { title, backdrop_path } = movie;
 
   return (
     <div
@@ -31,12 +24,12 @@ export const MoviePage = () => {
         />
       </figure>
       <div className="container relative z-[5] mx-auto px-4 pt-32 xl:px-8">
-        <MovieOverview id={id} />
+        <MovieOverview />
         <div className="my-10 grid grid-cols-3 gap-10 lg:grid-cols-12">
-          <MovieDetails id={id} />
-          <MovieGallery id={id} />
+          <MovieDetails />
+          <MovieGallery />
         </div>
-        <RecommendedMovies id={id} title={title} />
+        {/* <RecommendedMovies /> */}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MovieTrailer } from "./MovieTrailer";
 import { useFetch } from "../../../hooks";
+import { useLoaderData } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -9,19 +10,13 @@ import PlayImg from "../images/play_icon.png";
 
 import "swiper/css";
 import "swiper/css/free-mode";
-// import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-export const MovieGallery = ({ id }) => {
+export const MovieGallery = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`;
+  const movie = useLoaderData();
 
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
-
-  const { backdrops } = data;
+  const { images } = movie;
 
   return (
     <div className="col-span-3 lg:col-span-9">
@@ -36,10 +31,10 @@ export const MovieGallery = ({ id }) => {
         className="mySwiper2 group relative flex h-[300px] select-none items-center sm:h-[550px]"
       >
         <SwiperSlide>
-          <MovieTrailer id={id} />
+          <MovieTrailer />
         </SwiperSlide>
 
-        {backdrops
+        {images?.backdrops
           .filter(({ iso_639_1 }) => iso_639_1 === null)
           .map(({ file_path }) => (
             <SwiperSlide key={file_path}>
@@ -73,14 +68,15 @@ export const MovieGallery = ({ id }) => {
       >
         <SwiperSlide className="relative">
           <img
-            src={`https://image.tmdb.org/t/p/w1280${backdrops[0].file_path}`}
+            src={`https://image.tmdb.org/t/p/w1280${images?.backdrops[0].file_path}`}
           />
           <img
             className="absolute inset-0 h-full w-full object-cover"
             src={PlayImg}
           />
         </SwiperSlide>
-        {backdrops
+
+        {images?.backdrops
           .filter(({ iso_639_1 }) => iso_639_1 === null)
           .map(({ file_path }) => (
             <SwiperSlide key={file_path}>

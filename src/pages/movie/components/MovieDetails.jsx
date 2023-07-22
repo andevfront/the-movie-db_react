@@ -1,15 +1,10 @@
 import { useCast, useDirector, useProductionCompanies } from "../hooks";
-
-import { useCurrencyFormat, useFetch } from "../../../hooks";
+import { useCurrencyFormat } from "../../../hooks";
+import { useLoaderData } from "react-router-dom";
 import ISO6391 from "iso-639-1";
 
-export const MovieDetails = ({ id }) => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits`;
-
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
+export const MovieDetails = () => {
+  const movie = useLoaderData();
 
   const {
     original_title,
@@ -19,7 +14,7 @@ export const MovieDetails = ({ id }) => {
     revenue,
     credits,
     production_companies,
-  } = data;
+  } = movie;
 
   return (
     <div className="col-span-3">

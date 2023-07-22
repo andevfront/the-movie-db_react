@@ -1,9 +1,9 @@
 import {
   useDuration,
-  useFetch,
   useIntegerRounded,
   useScaleRounded,
 } from "../../../hooks";
+import { useLoaderData } from "react-router-dom";
 import Rater from "react-rater";
 import moment from "moment";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -16,12 +16,7 @@ import "react-circular-progressbar/dist/styles.css";
 import "../css/react-circular-progressbar.css";
 
 export const MovieOverview = ({ id }) => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-
-  const { data, isLoading } = useFetch(API_URL);
-
-  if (isLoading) return;
+  const movie = useLoaderData();
 
   const {
     title,
@@ -34,7 +29,7 @@ export const MovieOverview = ({ id }) => {
     overview,
     genres,
     vote_count,
-  } = data;
+  } = movie;
 
   return (
     <div className="grid grid-cols-3 gap-10 text-slate-400 lg:grid-cols-12">
