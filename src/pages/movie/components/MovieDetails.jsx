@@ -7,13 +7,15 @@ export const MovieDetails = () => {
   const movie = useLoaderData();
 
   const {
-    original_title,
-    status,
-    original_language,
-    budget,
-    revenue,
-    credits,
-    production_companies,
+    description: {
+      original_title,
+      status,
+      original_language,
+      budget,
+      revenue,
+      production_companies,
+    },
+    credits: { crew, cast },
   } = movie;
 
   return (
@@ -25,11 +27,11 @@ export const MovieDetails = () => {
         </li>
         <li className="my-2">
           <b className="block text-white">Director</b>
-          {useDirector(credits)}
+          {useDirector(crew)}
         </li>
         <li className="my-2">
           <b className=" block text-white">Elenco</b>
-          <span className="line-clamp-3">{useCast(credits)}</span>
+          <span className="line-clamp-3">{useCast(cast)}</span>
         </li>
         <li className="my-2">
           <b className=" block text-white">Productoras</b>

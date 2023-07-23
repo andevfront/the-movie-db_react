@@ -1,92 +1,58 @@
-import { useState } from "react";
-import { MovieTrailer } from "./MovieTrailer";
-import { useFetch } from "../../../hooks";
+import { useEffect, useState } from "react";
+import { useFilterImages } from "../hooks";
+import { useCounter } from "../../../hooks";
+import { LoadingButton } from "../../../components";
+import { ItemGallery } from "./ItemGallery";
 import { useLoaderData } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { Gallery } from "react-photoswipe-gallery";
 
-import PlayImg from "../images/play_icon.png";
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/thumbs";
+import "photoswipe/dist/photoswipe.css";
 
 export const MovieGallery = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const movie = useLoaderData();
 
-  const { images } = movie;
+  const {
+    images: { backdrops },
+  } = movie;
+
+  const filteredBackdrops = useFilterImages(backdrops);
+
+  const { counter, onIncrement, onReset } = useCounter(
+    6,
+    filteredBackdrops.length
+  );
+
+  const handleIncrement = () => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      onIncrement(6);
+      setIsLoading(false);
+    }, 600);
+  };
+
+  useEffect(() => {
+    onReset();
+  }, [backdrops]);
 
   return (
     <div className="col-span-3 lg:col-span-9">
-      <Swiper
-        spaceBetween={10}
-        loop={true}
-        navigation={{ nextEl: ".button-next", prevEl: ".button-prev" }}
-        thumbs={{
-          swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
-        }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 group relative flex h-[300px] select-none items-center sm:h-[550px]"
-      >
-        <SwiperSlide>
-          <MovieTrailer />
-        </SwiperSlide>
-
-        {images?.backdrops
-          .filter(({ iso_639_1 }) => iso_639_1 === null)
-          .map(({ file_path }) => (
-            <SwiperSlide key={file_path}>
-              <img
-                src={`https://image.tmdb.org/t/p/w1280${file_path}`}
-                alt={file_path}
-              />
-            </SwiperSlide>
+      <h2 className="mb-5 text-2xl font-semibold text-white">Imágenes</h2>
+      <Gallery>
+        <div className="grid grid-cols-12 gap-4">
+          {filteredBackdrops.slice(0, counter).map(({ file_path }, index) => (
+            <ItemGallery index={index} file_path={file_path} />
           ))}
-
-        <div className="button-prev absolute -left-full z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-300 group-hover:left-2 hover:bg-sky-700">
-          <FiArrowLeft />
         </div>
-        <div className="button-next absolute -right-full z-[3] cursor-pointer rounded-full bg-sky-500 p-4 transition-all duration-300 group-hover:right-2 hover:bg-sky-700">
-          <FiArrowRight />
-        </div>
-      </Swiper>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        spaceBetween={10}
-        slidesPerView={3}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        breakpoints={{
-          640: {
-            slidesPerView: 4,
-          },
-        }}
-        className="mySwiper mt-4 h-[70px] select-none sm:h-[150px]"
-      >
-        <SwiperSlide className="relative">
-          <img
-            src={`https://image.tmdb.org/t/p/w1280${images?.backdrops[0].file_path}`}
-          />
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src={PlayImg}
-          />
-        </SwiperSlide>
-
-        {images?.backdrops
-          .filter(({ iso_639_1 }) => iso_639_1 === null)
-          .map(({ file_path }) => (
-            <SwiperSlide key={file_path}>
-              <img
-                src={`https://image.tmdb.org/t/p/w1280${file_path}`}
-                alt={file_path}
-              />
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      </Gallery>
+      {counter >= filteredBackdrops.length ? null : (
+        <LoadingButton
+          isLoading={isLoading}
+          handleIncrement={handleIncrement}
+        />
+      )}
     </div>
   );
 };

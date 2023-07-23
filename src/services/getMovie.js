@@ -1,19 +1,35 @@
 export const getMovie = async ({ params }) => {
   try {
     const key = import.meta.env.VITE_API_KEY;
-    const url = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${key}&append_to_response=credits,images,videos`;
 
-    const res = await fetch(url);
+    // Descripcion
+    const url1 = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${key}`;
+    // Videos
+    const url2 = `https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${key}`;
+    // Imagenes
+    const url3 = `https://api.themoviedb.org/3/movie/${params.id}/images?api_key=${key}`;
+    // Creditos
+    const url4 = `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=${key}`;
 
-    if (!res.ok) {
-      // Si la respuesta no es exitosa, lanzamos una excepción con el mensaje del error.
-      throw new Error("Error al obtener la película");
-    }
+    // Haciendo las peticiones en paralelo
+    const [descriptionRes, videosRes, imagesRes, creditsRes] =
+      await Promise.all([fetch(url1), fetch(url2), fetch(url3), fetch(url4)]);
 
-    const movie = await res.json();
-    return movie;
+    // Obteniendo los datos de las respuestas
+    const description = await descriptionRes.json();
+    const videos = await videosRes.json();
+    const images = await imagesRes.json();
+    const credits = await creditsRes.json();
+
+    // Retornando un objeto con las respuestas
+    return {
+      description,
+      videos,
+      images,
+      credits,
+    };
   } catch (error) {
     console.error("Error al obtener la película:", error);
-    return null; // O puedes retornar un objeto vacío o algún valor predeterminado, según tus necesidades.
+    return null;
   }
 };

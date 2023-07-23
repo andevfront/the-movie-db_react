@@ -4,19 +4,21 @@ import {
   MovieGallery,
   RecommendedMovies,
 } from "./components";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 export const MoviePage = () => {
   const movie = useLoaderData();
 
-  const { title, backdrop_path } = movie;
+  const {
+    description: { title, backdrop_path },
+  } = movie;
 
   return (
-    <div
-      className="relative after:absolute after:inset-0 after:h-full after:w-full after:bg-[linear-gradient(to_bottom,_rgba(8,_15,_40,_0)_0%,_rgba(15,_23,_42,_1)_100%)]
-    after:content-['']"
-    >
-      <figure className="absolute h-full w-full after:absolute after:inset-0 after:h-full after:w-full after:bg-black/50">
+    <>
+      <figure
+        className="fixed h-screen w-screen before:absolute before:inset-0 before:z-[5] before:h-full before:w-full
+      before:bg-[linear-gradient(to_bottom,_rgba(8,_15,_40,_0)_0%,_rgba(15,_23,_42,_1)_100%)] before:content-[''] after:absolute after:inset-0 after:z-[4] after:h-full after:w-full after:bg-black/50"
+      >
         <img
           className="h-full w-full object-cover"
           src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
@@ -31,6 +33,6 @@ export const MoviePage = () => {
         </div>
         {/* <RecommendedMovies /> */}
       </div>
-    </div>
+    </>
   );
 };
