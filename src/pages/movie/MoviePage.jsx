@@ -27,7 +27,7 @@ export const MoviePage = () => {
           />
         </figure>
       )}
-      <div className="container relative z-[5] mx-auto px-4 pt-32 xl:px-8">
+      <div className="container relative mx-auto px-4 pt-32 xl:px-8">
         <MovieOverview />
         <div className="my-10 grid grid-cols-3 gap-10 lg:grid-cols-12">
           <MovieDetails />
