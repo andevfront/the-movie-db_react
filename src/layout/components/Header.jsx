@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../../images/logo.png";
+import Logo from "../../images/logo.svg";
 import { Search } from "../../components/Search";
 
 export const Header = () => {
@@ -8,7 +8,7 @@ export const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-4 xl:px-8">
         <Link to="/">
           <figure>
-            <img src={Logo} alt="logo" className="max-h-12" />
+            <img src={Logo} alt="logo" className="max-h-12 w-48" />
           </figure>
         </Link>
         <Search />
