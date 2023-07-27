@@ -20,7 +20,7 @@ Utilice [Node.js](https://nodejs.org/en/download/) 18.16 o superior.
      https://github.com/andevfront/the-movie-db_react.git 
      
 #### 2) Navegue hasta el clon:
-    cd pelitube
+    the-movie-db_react
 
 #### 3) Instale las dependencias de Node.js:
     npm i
