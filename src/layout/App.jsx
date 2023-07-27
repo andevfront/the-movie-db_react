@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom";
 import { Header } from "./components";
 
 export const App = () => {
@@ -6,6 +6,7 @@ export const App = () => {
 
   return (
     <>
+      <ScrollRestoration />
       <Header />
       {navigation.state === "loading" && null}
       <Outlet />
