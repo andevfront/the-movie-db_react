@@ -25,36 +25,48 @@ export const MovieDetails = () => {
           <b className="block text-white">Título original</b>
           {original_title}
         </li>
-        <li className="my-2">
-          <b className="block text-white">Director</b>
-          {useDirector(crew)}
-        </li>
-        <li className="my-2">
-          <b className=" block text-white">Elenco</b>
-          <span className="line-clamp-3">{useCast(cast)}</span>
-        </li>
-        <li className="my-2">
-          <b className=" block text-white">Productoras</b>
-          <span className="line-clamp-3">
-            {useProductionCompanies(production_companies)}
-          </span>
-        </li>
-        <li className="my-2">
-          <b className="block text-white">Presupuesto</b>
-          {useCurrencyFormat(budget)}
-        </li>
-        <li className="my-2">
-          <b className="block text-white">Ganancia</b>
-          {useCurrencyFormat(revenue)}
-        </li>
+        {crew.length > 0 && (
+          <li className="my-2">
+            <b className="block text-white">Director</b>
+            {useDirector(crew)}
+          </li>
+        )}
+        {cast.length > 0 && (
+          <li className="my-2">
+            <b className=" block text-white">Elenco</b>
+            <span className="line-clamp-3">{useCast(cast)}</span>
+          </li>
+        )}
+        {production_companies.length > 0 && (
+          <li className="my-2">
+            <b className=" block text-white">Productoras</b>
+            <span className="line-clamp-3">
+              {useProductionCompanies(production_companies)}
+            </span>
+          </li>
+        )}
+        {budget > 0 && (
+          <li className="my-2">
+            <b className="block text-white">Presupuesto</b>
+            {useCurrencyFormat(budget)}
+          </li>
+        )}
+        {revenue > 0 && (
+          <li className="my-2">
+            <b className="block text-white">Ganancia</b>
+            {useCurrencyFormat(revenue)}
+          </li>
+        )}
         <li className="my-2">
           <b className="block text-white">Estado</b>
           {status}
         </li>
-        <li className="my-2">
-          <b className="block text-white">Idioma original</b>
-          {ISO6391.getName(original_language)}
-        </li>
+        {ISO6391.getName(original_language).length > 0 && (
+          <li className="my-2">
+            <b className="block text-white">Idioma original</b>
+            {ISO6391.getName(original_language)}
+          </li>
+        )}
       </ul>
     </div>
   );

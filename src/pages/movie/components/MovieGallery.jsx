@@ -38,21 +38,31 @@ export const MovieGallery = () => {
   }, [backdrops]);
 
   return (
-    <div className="col-span-3 lg:col-span-9">
-      <h2 className="mb-5 text-2xl font-semibold text-white">Imágenes</h2>
-      <Gallery>
-        <div className="grid grid-cols-12 gap-4">
-          {filteredBackdrops.slice(0, counter).map(({ file_path }, index) => (
-            <ItemGallery key={index} index={index} file_path={file_path} />
-          ))}
+    <>
+      {filteredBackdrops.length < 0 && (
+        <div className="col-span-3 lg:col-span-9">
+          <h2 className="mb-5 text-2xl font-semibold text-white">Imágenes</h2>
+          <Gallery>
+            <div className="grid grid-cols-12 gap-4">
+              {filteredBackdrops
+                .slice(0, counter)
+                .map(({ file_path }, index) => (
+                  <ItemGallery
+                    key={index}
+                    index={index}
+                    file_path={file_path}
+                  />
+                ))}
+            </div>
+          </Gallery>
+          {counter >= filteredBackdrops.length ? null : (
+            <LoadingButton
+              isLoading={isLoading}
+              handleIncrement={handleIncrement}
+            />
+          )}
         </div>
-      </Gallery>
-      {counter >= filteredBackdrops.length ? null : (
-        <LoadingButton
-          isLoading={isLoading}
-          handleIncrement={handleIncrement}
-        />
       )}
-    </div>
+    </>
   );
 };
