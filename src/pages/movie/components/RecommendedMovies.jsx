@@ -21,7 +21,7 @@ export const RecommendedMovies = () => {
             modules={[Autoplay]}
             slidesPerView={2}
             spaceBetween={20}
-            loop="true"
+            loop={results.length <= 2}
             autoplay={{
               delay: 2800,
               disableOnInteraction: false,
