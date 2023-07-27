@@ -31,7 +31,7 @@ export const MoviePage = () => {
           <MovieDetails />
           <MovieGallery />
         </div>
-        {/* <RecommendedMovies /> */}
+        <RecommendedMovies />
       </div>
     </>
   );

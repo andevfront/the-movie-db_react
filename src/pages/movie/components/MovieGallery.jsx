@@ -43,7 +43,7 @@ export const MovieGallery = () => {
       <Gallery>
         <div className="grid grid-cols-12 gap-4">
           {filteredBackdrops.slice(0, counter).map(({ file_path }, index) => (
-            <ItemGallery index={index} file_path={file_path} />
+            <ItemGallery key={index} index={index} file_path={file_path} />
           ))}
         </div>
       </Gallery>
