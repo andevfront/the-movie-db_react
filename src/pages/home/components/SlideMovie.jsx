@@ -1,5 +1,6 @@
 import { useFetch } from "../../../hooks";
 import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
 import { HiOutlineClock, HiArrowNarrowRight } from "react-icons/hi";
 import { HiCalendarDays } from "react-icons/hi2";
 import moment from "moment";
@@ -54,10 +55,10 @@ export const SlideMovie = ({ id }) => {
               <b className="text-white">Género:</b> {genres[0].name}
             </span>
             <Link
-              className="mr-5 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-4 py-3 font-medium text-white transition-all duration-500 hover:bg-sky-700"
+              className="inline-flex items-center gap-2 rounded-lg border border-sky-500 bg-slate-800/50 px-4 py-2 font-medium text-white transition-all duration-300 hover:bg-slate-800/80"
               to={`movie/${id}`}
             >
-              Ver Detalles <HiArrowNarrowRight className="h-6 w-6" />
+              Ver Detalles <FiArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
