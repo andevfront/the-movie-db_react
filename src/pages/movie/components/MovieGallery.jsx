@@ -39,7 +39,7 @@ export const MovieGallery = () => {
 
   return (
     <>
-      {filteredBackdrops.length < 0 && (
+      {filteredBackdrops.length > 0 && (
         <div className="col-span-3 lg:col-span-9">
           <h2 className="mb-5 text-2xl font-semibold text-white">Imágenes</h2>
           <Gallery>
