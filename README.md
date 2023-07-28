@@ -17,7 +17,7 @@ Ver demostración: [demo](http://tmdb.andevfrontend.com/).
 Utilice [Node.js](https://nodejs.org/en/download/) 18.16 o superior.
 
 #### 1) Clonar el repositorio:
-     https://github.com/andevfront/the-movie-db_react.git 
+     git clone https://github.com/andevfront/the-movie-db_react.git 
      
 #### 2) Navegue hasta el clon:
     cd the-movie-db_react
