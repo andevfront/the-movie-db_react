@@ -10,17 +10,17 @@ Para esta app se utilizo:
 ---
 ### Demo
 
-Ver demostración: [demo](https://pelitube.andevfrontend.com/).
+Ver demostración: [demo](http://tmdb.andevfrontend.com/).
 
 ---
 ### Instalación
 Utilice [Node.js](https://nodejs.org/en/download/) 18.16 o superior.
 
 #### 1) Clonar el repositorio:
-     https://github.com/PabloAndrade96/PeliTube.git 
+     git clone https://github.com/andevfront/the-movie-db_react.git 
      
 #### 2) Navegue hasta el clon:
-    cd pelitube
+    cd the-movie-db_react
 
 #### 3) Instale las dependencias de Node.js:
     npm i
