@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useFetch } from "../hooks";
-import imageNotFound from "../images/image_not_showing.jpg";
+import { useFetch } from "../../hooks";
+import imageNotFound from "../../images/image_not_showing.jpg";
 
 export const SearchResults = ({ words, handleMovieClick }) => {
   const API_KEY = import.meta.env.VITE_API_KEY;
