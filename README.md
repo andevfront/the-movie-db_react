@@ -14,7 +14,7 @@ Ver demostración: [demo](http://tmdb.andevfrontend.com/).
 
 ---
 ### Instalación
-Utilice [Node.js](https://nodejs.org/en/download/) 18.16 o superior.
+Utilice [Node.js](https://nodejs.org/en/download/) 16 o superior.
 
 #### 1) Clonar el repositorio:
      git clone https://github.com/andevfront/the-movie-db_react.git 
@@ -25,7 +25,7 @@ Utilice [Node.js](https://nodejs.org/en/download/) 18.16 o superior.
 #### 3) Instale las dependencias de Node.js:
     npm i
 
-#### 4): Configure la variable de enterno de su Api Key. Obtenga su Api Key de [The Movie DB](https://www.themoviedb.org/).
+#### 4): Configure la variable de entorno de su Api Key. Obtenga su Api Key de [The Movie DB](https://www.themoviedb.org/).
 En la raíz del proyecto, cree un archivo `.env` donde posteriormente deberas agregar su Api Key.
 
     VITE_API_KEY=tu_api_key
