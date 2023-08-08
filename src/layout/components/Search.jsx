@@ -3,21 +3,20 @@ import { FiSearch } from "react-icons/fi";
 import { SearchResults } from "./SearchResults";
 
 export const Search = () => {
-  const [words, setWords] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChange = ({ target }) => setWords(target.value);
+  const handleChange = ({ target }) => setSearchQuery(target.value);
 
-  const handleMovieClick = () => setWords("");
-
-  window.addEventListener(
-    "click",
-    ({ target }) => !target.closest(".search-result-popup") && setWords("")
-  );
+  const handleClick = (e) => {
+    if (e.target !== e.currentTarget) {
+      setSearchQuery("");
+    }
+  };
 
   return (
     <form
       className="relative"
-      onClick={(e) => e.stopPropagation()}
+      onClick={handleClick}
       onSubmit={(e) => e.preventDefault()}
     >
       <input
@@ -27,7 +26,7 @@ export const Search = () => {
         id="search"
         autoComplete="off"
         placeholder="Buscar..."
-        value={words}
+        value={searchQuery}
         onChange={handleChange}
       />
       <button
@@ -37,9 +36,7 @@ export const Search = () => {
         <FiSearch className="h-6 w-6 text-sky-500" />
       </button>
       <div className="absolute right-0 top-full mt-3 rounded-lg bg-slate-800/60">
-        {words.trim().length > 0 && (
-          <SearchResults words={words} handleMovieClick={handleMovieClick} />
-        )}
+        {searchQuery.trim().length > 0 && <SearchResults query={searchQuery} />}
       </div>
     </form>
   );

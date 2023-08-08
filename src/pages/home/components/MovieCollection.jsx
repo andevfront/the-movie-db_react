@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { MovieCard } from "./MovieCard";
-import { useFetch } from "../../../hooks";
 import { Pagination } from "../../../components";
+import { getPageMovies } from "../../../services";
 
 export const MovieCollection = () => {
   const [page, setPage] = useState(1);
 
-  const key = import.meta.env.VITE_API_KEY;
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}&page=${page}`;
-
-  const { data, isLoading } = useFetch(url);
+  const { data, isLoading } = getPageMovies(page);
 
   if (isLoading) return;
 

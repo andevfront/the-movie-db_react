@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import { useDecimalRounded, useFetch } from "../../../hooks";
+import { useDecimalRounded } from "../../../hooks";
+import { getMovieData } from "../../../services";
 import { HiStar, HiOutlineClock } from "react-icons/hi";
 import { HiCalendarDays } from "react-icons/hi2";
 import moment from "moment";
 
 export const AsideMovieCard = ({ id }) => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-
-  const { data, isLoading } = useFetch(API_URL);
+  const { data, isLoading } = getMovieData(id);
 
   if (isLoading) return;
 

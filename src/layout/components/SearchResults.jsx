@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import { useFetch } from "../../hooks";
+import { searchMovies } from "../../services";
 import imageNotFound from "../../images/image_not_showing.jpg";
 
-export const SearchResults = ({ words, handleMovieClick }) => {
-  const API_KEY = import.meta.env.VITE_API_KEY;
-  const API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${words}`;
-
-  const { data, isLoading } = useFetch(API_URL);
+export const SearchResults = ({ query }) => {
+  const { data, isLoading } = searchMovies(query);
 
   if (isLoading) return;
 
@@ -20,7 +17,6 @@ export const SearchResults = ({ words, handleMovieClick }) => {
             className="flex gap-2 p-2 transition-all duration-300 hover:bg-slate-700/50"
             key={item.id}
             to={`movie/${item.id}`}
-            onClick={handleMovieClick}
           >
             <div>
               <img
