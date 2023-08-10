@@ -1,3 +1,4 @@
+export * from './useCalculateSlidesPerView';
 export * from "./useCounter";
 export * from "./useCurrencyFormat";
 export * from "./useDecimalRounded";

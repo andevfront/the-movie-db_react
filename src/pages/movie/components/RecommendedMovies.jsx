@@ -1,5 +1,6 @@
 import { RecoMovieCard } from "./RecoMovieCard";
 import { useLoaderData } from "react-router-dom";
+import { useCalculateSlidesPerView } from "../../../hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
@@ -9,6 +10,11 @@ export const RecommendedMovies = () => {
   const { recommendations } = useLoaderData();
 
   const { results } = recommendations;
+
+  const slidesPerViewBase = useCalculateSlidesPerView(results.length, 2);
+  const slidesPerViewSm = useCalculateSlidesPerView(results.length, 3);
+  const slidesPerViewMd = useCalculateSlidesPerView(results.length, 4);
+  const slidesPerViewLg = useCalculateSlidesPerView(results.length, 5);
 
   return (
     <>
@@ -21,7 +27,7 @@ export const RecommendedMovies = () => {
             modules={[Autoplay]}
             slidesPerView={2}
             spaceBetween={20}
-            loop={results.length <= 2}
+            loop={results.length >= slidesPerViewBase * 2}
             autoplay={{
               delay: 2800,
               disableOnInteraction: false,
@@ -29,12 +35,15 @@ export const RecommendedMovies = () => {
             breakpoints={{
               640: {
                 slidesPerView: 3,
+                loop: results.length >= slidesPerViewSm * 2,
               },
               768: {
                 slidesPerView: 4,
+                loop: results.length >= slidesPerViewMd * 2,
               },
               1024: {
                 slidesPerView: 5,
+                loop: results.length >= slidesPerViewLg * 2,
               },
             }}
             className="mySwiper relative flex select-none items-center px-2 py-5"
