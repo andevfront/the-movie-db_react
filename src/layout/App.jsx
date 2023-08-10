@@ -1,5 +1,5 @@
 import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom";
-import { Header } from "./components";
+import { Footer, Header } from "./components";
 
 export const App = () => {
   const navigation = useNavigation();
@@ -10,6 +10,7 @@ export const App = () => {
       <Header />
       {navigation.state === "loading" && null}
       <Outlet />
+      <Footer />
     </>
   );
 };
