@@ -10,6 +10,8 @@ export const RecommendedMovies = () => {
 
   const { results } = recommendations;
 
+  const slidesPerView = Math.min(5, Math.max(2, results.length));
+
   return (
     <>
       {results.length > 0 && (
@@ -21,7 +23,7 @@ export const RecommendedMovies = () => {
             modules={[Autoplay]}
             slidesPerView={2}
             spaceBetween={20}
-            loop={results.length <= 2}
+            loop={results.length >= slidesPerView * 2}
             autoplay={{
               delay: 2800,
               disableOnInteraction: false,
